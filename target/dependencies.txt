@@ -1,0 +1,23 @@
+digraph "com.example:hibernate:jar:1" { 
+	"com.example:hibernate:jar:1" -> "com.mysql:mysql-connector-j:jar:8.0.33:compile" ; 
+	"com.example:hibernate:jar:1" -> "org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" ; 
+	"com.example:hibernate:jar:1" -> "junit:junit:jar:4.11:test" ; 
+	"com.mysql:mysql-connector-j:jar:8.0.33:compile" -> "com.google.protobuf:protobuf-java:jar:3.21.9:compile" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "jakarta.persistence:jakarta.persistence-api:jar:3.1.0:compile" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "jakarta.transaction:jakarta.transaction-api:jar:2.0.1:compile" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "org.jboss.logging:jboss-logging:jar:3.5.0.Final:runtime" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "org.hibernate.common:hibernate-commons-annotations:jar:6.0.6.Final:runtime" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "io.smallrye:jandex:jar:3.1.2:runtime" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "com.fasterxml:classmate:jar:1.5.1:runtime" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "net.bytebuddy:byte-buddy:jar:1.12.18:runtime" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "jakarta.xml.bind:jakarta.xml.bind-api:jar:4.0.0:runtime" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "org.glassfish.jaxb:jaxb-runtime:jar:4.0.2:runtime" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "jakarta.inject:jakarta.inject-api:jar:2.0.1:runtime" ; 
+	"org.hibernate.orm:hibernate-core:jar:6.3.0.CR1:compile" -> "org.antlr:antlr4-runtime:jar:4.10.1:runtime" ; 
+	"jakarta.xml.bind:jakarta.xml.bind-api:jar:4.0.0:runtime" -> "jakarta.activation:jakarta.activation-api:jar:2.1.0:runtime" ; 
+	"org.glassfish.jaxb:jaxb-runtime:jar:4.0.2:runtime" -> "org.glassfish.jaxb:jaxb-core:jar:4.0.2:runtime" ; 
+	"org.glassfish.jaxb:jaxb-core:jar:4.0.2:runtime" -> "org.eclipse.angus:angus-activation:jar:2.0.0:runtime" ; 
+	"org.glassfish.jaxb:jaxb-core:jar:4.0.2:runtime" -> "org.glassfish.jaxb:txw2:jar:4.0.2:runtime" ; 
+	"org.glassfish.jaxb:jaxb-core:jar:4.0.2:runtime" -> "com.sun.istack:istack-commons-runtime:jar:4.1.1:runtime" ; 
+	"junit:junit:jar:4.11:test" -> "org.hamcrest:hamcrest-core:jar:1.3:test" ; 
+ } 
