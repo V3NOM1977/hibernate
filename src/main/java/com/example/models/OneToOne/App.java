@@ -19,9 +19,12 @@ public class App {
 
         Question question1 = new Question("Kahan ho bhai?", new Answer("Chand pe."));
         session.persist(question1);
+        
         Question question2 = new Question("Don ko kaise pakde?",
                 new Answer("Don ko pakdna mushkil hi nahi namunkin hai."));
         session.persist(question2);
+
+        System.out.println((Question) session.get(Question.class, 1));
 
         session.getTransaction().commit();
         session.close();

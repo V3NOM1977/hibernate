@@ -26,7 +26,17 @@ public class Project {
     private String projectName;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "emp_project", joinColumns = {@JoinColumn(name = "project_id")}, inverseJoinColumns = {@JoinColumn(name = "course_id")})
+    @JoinTable(name = "emp_project", joinColumns = { @JoinColumn(name = "project_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "employee_id") })
     private List<Employee> employees;
+
+    public Project(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public Project(String projectName, List<Employee> employees) {
+        this.projectName = projectName;
+        this.employees = employees;
+    }
 
 }

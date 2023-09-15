@@ -22,8 +22,20 @@ public class Author {
 
     @Column(name = "author_name")
     private String authorName;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Book> books;
+
+    public Author(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public Author(String authorName, List<Book> books) {
+        this.authorName = authorName;
+        this.books = books;
+        for (Book book : books) {
+            book.setAuthor(this);
+        }
+    }
 
 }

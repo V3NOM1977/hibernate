@@ -2,7 +2,6 @@ package com.example.models.ManyToMany;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +22,11 @@ public class Employee {
     @Column(name = "employee_name")
     private String employeeName;
 
-    @ManyToMany(mappedBy = "employees", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "employees")
     private List<Project> projects;
+
+    public Employee(String employeeName) {
+        this.employeeName = employeeName;
+    }
 
 }
