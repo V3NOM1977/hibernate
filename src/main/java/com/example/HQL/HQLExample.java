@@ -1,5 +1,9 @@
 package com.example.HQL;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -7,27 +11,65 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import com.example.relational_mappings.Course;
 import com.example.relational_mappings.Student;
+
+import jakarta.transaction.Transactional;
 
 public class HQLExample {
 
-    public static void main(String[] args) {
+    @Transactional
+    public static void main(String[] args) throws IOException {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        String queryString = "from Student";
+        FileInputStream fileInputStream = new FileInputStream(new File("src/main/resources/image.png"));
+        byte[] image = new byte[fileInputStream.available()];
+        fileInputStream.read(image);
+
+        Course course1 = new Course();
+        course1.setCourseName("B.TECH");
+        course1.setCourseDurationInYears(4);
+
+        Student student1 = Student.builder()
+                .studentName("Rishabh Rawat")
+                .rollNo(67)
+                .createdAt(new Date())
+                .image(image)
+                .course(course1)
+                .temp(100)
+                .build();
+
+        session.persist(student1);
+
+        Course course2 = new Course();
+        course2.setCourseName("Maths Hons");
+        course2.setCourseDurationInYears(3);
+
+        Student student2 = Student.builder()
+                .studentName("Nishita Rawat")
+                .rollNo(68)
+                .createdAt(new Date())
+                .image(image)
+                .course(course2)
+                .temp(100)
+                .build();
+
+        session.persist(student2);
+
+        String queryString = "SELECT s FROM Student s WHERE s.course.courseName = :x";
 
         Query<Student> query = session.createQuery(queryString, Student.class);
 
-        // query.setParameter("x", "BBA");
+        query.setParameter("x", "Maths Hons");
 
         // Student student = query.uniqueResult();
         // System.out.println(student);
 
         List<Student> students = query.list();
-        students.forEach(student -> {
+            students.forEach(student -> {
             System.out.println(student);
         });
 

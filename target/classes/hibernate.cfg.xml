@@ -26,13 +26,13 @@
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
         <!-- Specify annotated entity classes -->
-        <mapping class="com.example.models.Student" />
-        <mapping class="com.example.models.OneToOne.Question" />
-        <mapping class="com.example.models.OneToOne.Answer" />
-        <mapping class="com.example.models.OneToMany.Book" />
-        <mapping class="com.example.models.OneToMany.Author" />
-        <mapping class="com.example.models.ManyToMany.Employee" />
-        <mapping class="com.example.models.ManyToMany.Project" />
+        <mapping class="com.example.relational_mappings.Student" />
+        <mapping class="com.example.relational_mappings.OneToOne.Question" />
+        <mapping class="com.example.relational_mappings.OneToOne.Answer" />
+        <mapping class="com.example.relational_mappings.OneToMany.Book" />
+        <mapping class="com.example.relational_mappings.OneToMany.Author" />
+        <mapping class="com.example.relational_mappings.ManyToMany.Employee" />
+        <mapping class="com.example.relational_mappings.ManyToMany.Project" />
         <!-- More entity mappings... -->
 
         <!-- Specify XML mapping files if needed -->
