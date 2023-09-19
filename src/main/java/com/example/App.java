@@ -9,8 +9,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.example.models.Course;
-import com.example.models.Student;
+import com.example.mappings.Course;
+import com.example.mappings.Student;
 
 import jakarta.transaction.Transactional;
 
