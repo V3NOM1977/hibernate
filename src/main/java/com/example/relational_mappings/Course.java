@@ -1,4 +1,4 @@
-package com.example.mappings;
+package com.example.relational_mappings;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

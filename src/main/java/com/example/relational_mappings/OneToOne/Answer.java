@@ -1,5 +1,5 @@
 
-package com.example.mappings.OneToOne;
+package com.example.relational_mappings.OneToOne;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

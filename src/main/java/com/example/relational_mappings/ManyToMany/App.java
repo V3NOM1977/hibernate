@@ -1,6 +1,5 @@
-package com.example.mappings.OneToMany;
+package com.example.relational_mappings.ManyToMany;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,28 +12,29 @@ import jakarta.transaction.Transactional;
 public class App {
 
     @Transactional
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        // ONE TO MANY
-        List<Book> books = new ArrayList<>();
-        books.add(new Book("Programming in Java"));
-        books.add(new Book("The joy of computing with Pyhton"));
-        books.add(new Book("Programming in Mordern C++"));
+        List<Employee> employees1 = new ArrayList<>();
+        employees1.add(new Employee("Rishabh Rawat"));
+        employees1.add(new Employee("Nishita Rawat"));
 
-        Author author = new Author("Rishabh Rawat", books);
+        Project project1 = new Project("Librec", employees1);
 
-        session.persist(author);
+        session.persist(project1);
 
-        // MANY TO ONE
-        Book book1 = new Book("Diffrential Calculus", new Author("Nishita Rawat"));
-        session.persist(book1);
-        
-        Book book2 = new Book("Integral Calculus", (Author) session.get(Author.class, 2));
-        session.persist(book2);
+        List<Employee> employees2 = new ArrayList<>();
+        employees2.add((Employee) session.get(Employee.class, 2));
+
+        Project project2 = new Project("ChatApp", employees2);
+
+        session.persist(project2);
+
+        System.out.println((Project) session.get(Project.class, 1));
+        System.out.println((Employee) session.get(Employee.class, 1));
 
         session.getTransaction().commit();
         session.close();

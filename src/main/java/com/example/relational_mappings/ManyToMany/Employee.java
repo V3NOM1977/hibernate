@@ -1,4 +1,4 @@
-package com.example.mappings.ManyToMany;
+package com.example.relational_mappings.ManyToMany;
 
 import java.util.List;
 

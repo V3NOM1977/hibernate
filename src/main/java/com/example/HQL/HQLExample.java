@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.example.mappings.Student;
+import com.example.relational_mappings.Student;
 
 public class HQLExample {
 

@@ -1,4 +1,4 @@
-package com.example.mappings.OneToOne;
+package com.example.relational_mappings.OneToOne;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

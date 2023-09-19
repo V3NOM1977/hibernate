@@ -1,4 +1,4 @@
-package com.example.mappings;
+package com.example.relational_mappings;
 
 import java.util.Date;
 
