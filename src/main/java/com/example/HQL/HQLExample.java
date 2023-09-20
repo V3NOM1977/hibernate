@@ -59,26 +59,24 @@ public class HQLExample {
 
         session.persist(student2);
 
-        // String queryString = "SELECT s FROM Student s WHERE s.course.courseName =:x";
+        String queryString1 = "SELECT s FROM Student s WHERE s.course.courseName =:x";
 
-        // SelectionQuery<Student> query = session.createSelectionQuery(queryString,
-        // Student.class);
+        SelectionQuery<Student> query1 = session.createSelectionQuery(queryString1, Student.class);
+        query1.setFirstResult(0); // OFFSET
+        query1.setMaxResults(10); // LIMIT
+        query1.setParameter("x", "Maths Hons");
 
-        // query.setParameter("x", "Maths Hons");
-
-        // // Student student = query.uniqueResult();
-        // // System.out.println(student);
-
-        // List<Student> students = query.list();
-        // students.forEach(student -> {
+        // Student student = query.uniqueResult();
         // System.out.println(student);
-        // });
 
-        // String queryString = "DELETE FROM Student s WHERE s.id = :x";
+        List<Student> students = query1.list();
+        students.forEach(student -> {
+            System.out.println(student);
+        });
 
-        String queryString = "DELETE FROM Student s WHERE s.id = :x";
+        String queryString2 = "DELETE FROM Student s WHERE s.id = :x";
 
-        int result = session.createMutationQuery(queryString).setParameter("x", 1).executeUpdate();
+        int result = session.createMutationQuery(queryString2).setParameter("x", 1).executeUpdate();
         System.out.println(result);
 
         session.getTransaction().commit();
