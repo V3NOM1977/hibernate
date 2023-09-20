@@ -25,6 +25,53 @@ public class HQLExample {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
+        insertStudents(session);
+
+        String queryString1 = "SELECT s FROM Student s WHERE s.course.courseName =:x";
+
+        SelectionQuery<Student> query1 = session.createSelectionQuery(queryString1, Student.class);
+        query1.setFirstResult(0); // OFFSET
+        query1.setMaxResults(10); // LIMIT
+        query1.setParameter("x", "Maths Hons");
+
+        // Student student = query.uniqueResult();
+        // System.out.println(student);
+
+        List<Student> students = query1.list();
+        students.forEach(student -> {
+            System.out.println(student);
+        });
+
+        String queryString2 = "DELETE FROM Student s WHERE s.id = :x";
+
+        int result = session.createMutationQuery(queryString2).setParameter("x", 1).executeUpdate();
+        System.out.println(result);
+
+        String sqlQuery1 = "SELECT * FROM students";
+
+        // getResultList(), getSingleResult(), or getSingleResultOrNull()
+        List<Student> list = session.createNativeQuery(sqlQuery1, Student.class).getResultList();
+        list.forEach(student -> {
+            System.out.println(student);
+        });
+
+        String sqlQuery2 = "DELETE FROM students";
+
+        int id = session.createNativeMutationQuery(sqlQuery2).executeUpdate();
+        System.out.println(id);
+
+        session.getTransaction().commit();
+        session.close();
+
+        /**
+         * AT THIS <property name="hibernate.hbm2ddl.auto">create-drop</property>
+         * PROPERTY,
+         * WHEN THE sessionFactory gets close all data will be delete.
+         */
+        // sessionFactory.close();
+    }
+
+    public static void insertStudents(Session session) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(new File("src/main/resources/image.png"));
         byte[] image = new byte[fileInputStream.available()];
         fileInputStream.read(image);
@@ -58,36 +105,6 @@ public class HQLExample {
                 .build();
 
         session.persist(student2);
-
-        String queryString1 = "SELECT s FROM Student s WHERE s.course.courseName =:x";
-
-        SelectionQuery<Student> query1 = session.createSelectionQuery(queryString1, Student.class);
-        query1.setFirstResult(0); // OFFSET
-        query1.setMaxResults(10); // LIMIT
-        query1.setParameter("x", "Maths Hons");
-
-        // Student student = query.uniqueResult();
-        // System.out.println(student);
-
-        List<Student> students = query1.list();
-        students.forEach(student -> {
-            System.out.println(student);
-        });
-
-        String queryString2 = "DELETE FROM Student s WHERE s.id = :x";
-
-        int result = session.createMutationQuery(queryString2).setParameter("x", 1).executeUpdate();
-        System.out.println(result);
-
-        session.getTransaction().commit();
-        session.close();
-
-        /**
-         * AT THIS <property name="hibernate.hbm2ddl.auto">create-drop</property>
-         * PROPERTY,
-         * WHEN THE sessionFactory gets close all data will be delete.
-         */
-        // sessionFactory.close();
     }
 
 }
