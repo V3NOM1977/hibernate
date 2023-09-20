@@ -9,7 +9,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
+import org.hibernate.query.SelectionQuery;
 
 import com.example.relational_mappings.Course;
 import com.example.relational_mappings.Student;
@@ -59,19 +59,27 @@ public class HQLExample {
 
         session.persist(student2);
 
-        String queryString = "SELECT s FROM Student s WHERE s.course.courseName = :x";
+        // String queryString = "SELECT s FROM Student s WHERE s.course.courseName =:x";
 
-        Query<Student> query = session.createQuery(queryString, Student.class);
+        // SelectionQuery<Student> query = session.createSelectionQuery(queryString,
+        // Student.class);
 
-        query.setParameter("x", "Maths Hons");
+        // query.setParameter("x", "Maths Hons");
 
-        // Student student = query.uniqueResult();
+        // // Student student = query.uniqueResult();
+        // // System.out.println(student);
+
+        // List<Student> students = query.list();
+        // students.forEach(student -> {
         // System.out.println(student);
+        // });
 
-        List<Student> students = query.list();
-            students.forEach(student -> {
-            System.out.println(student);
-        });
+        // String queryString = "DELETE FROM Student s WHERE s.id = :x";
+
+        String queryString = "DELETE FROM Student s WHERE s.id = :x";
+
+        int result = session.createMutationQuery(queryString).setParameter("x", 1).executeUpdate();
+        System.out.println(result);
 
         session.getTransaction().commit();
         session.close();
