@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <!-- Database connection settings -->
+    <session-factory>
+
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate</property>
+        <property name="hibernate.connection.username">v3nom</property>
+        <property name="hibernate.connection.password">v3nom</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Specify connection pool settings if needed -->
+        <!-- <property name="hibernate.c3p0.min_size">5</property> -->
+        <!-- <property name="hibernate.c3p0.max_size">20</property> -->
+        <!-- More connection pool properties... -->
+
+        <!-- Echo all executed SQL to stdout for debugging purposes -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+
+        <!-- Specify annotated entity classes -->
+        <mapping class="com.example.relational_mappings.Student" />
+        <mapping class="com.example.relational_mappings.OneToOne.Question" />
+        <mapping class="com.example.relational_mappings.OneToOne.Answer" />
+        <mapping class="com.example.relational_mappings.OneToMany.Book" />
+        <mapping class="com.example.relational_mappings.OneToMany.Author" />
+        <mapping class="com.example.relational_mappings.ManyToMany.Employee" />
+        <mapping class="com.example.relational_mappings.ManyToMany.Project" />
+        <!-- More entity mappings... -->
+
+        <!-- Specify XML mapping files if needed -->
+        <!-- <mapping resource="com/example/model/Product.hbm.xml"/> -->
+        <!-- More XML mappings... -->
+    </session-factory>
+</hibernate-configuration>
